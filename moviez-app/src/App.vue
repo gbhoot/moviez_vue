@@ -1,17 +1,24 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app
+    :height="96">
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>Movie Manzz</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+        label="Movie Name"
+        v-model="searchString">
+        </v-text-field>
+      </v-flex>
       <v-btn
         flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+        href="#"
+        :disabled="!dataAvailable"
+        @click="searchMovie"
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">Search</span>
       </v-btn>
     </v-toolbar>
 
@@ -22,16 +29,24 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
 export default {
   name: 'App',
   components: {
-    HelloWorld
   },
   data () {
     return {
-      //
+      searchString: ''
+    }
+  },
+  methods: {
+    searchMovie () {
+      this.$router.push('/search/'+ this.searchString)
+      this.searchString = ''
+    }
+  },
+  computed: {
+    dataAvailable () {
+      return this.searchString !== null && this.searchString !== ''
     }
   }
 }
