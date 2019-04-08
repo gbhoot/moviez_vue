@@ -2,9 +2,12 @@
   <v-app>
     <v-toolbar app
     :height="96">
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Movie Manzz</span>
-      </v-toolbar-title>
+      <v-btn flat
+      href="/">
+        <v-toolbar-title class="headline text-uppercase">
+          <span>Movie Manzz</span>
+        </v-toolbar-title>
+      </v-btn>
       <v-spacer></v-spacer>
       <v-flex xs12 sm6 md3>
         <v-text-field
@@ -16,8 +19,7 @@
         flat
         href="#"
         :disabled="!dataAvailable"
-        @click="searchMovie"
-      >
+        @click="searchMovie">
         <span class="mr-2">Search</span>
       </v-btn>
     </v-toolbar>
@@ -40,7 +42,7 @@ export default {
   },
   methods: {
     searchMovie () {
-      this.$router.push('/search/'+ this.searchString)
+      this.$router.push('/search/' + this.searchString)
       this.searchString = ''
     }
   },
